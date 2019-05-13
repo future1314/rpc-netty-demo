@@ -27,7 +27,7 @@ public class NettyClient {
    */
   public Object getBean(final Class<?> serviceClass,
       final String providerName) {
-    return Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(),
+    return Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(),//又是代理
         new Class<?>[]{serviceClass}, (proxy, method, args) -> {
           if (client == null) {
             initClient();
@@ -58,7 +58,7 @@ public class NettyClient {
           }
         });
     try {
-      b.connect("localhost", 8088).sync();
+      b.connect("localhost", 8088).sync();//
     } catch (InterruptedException e) {
       e.printStackTrace();
     }

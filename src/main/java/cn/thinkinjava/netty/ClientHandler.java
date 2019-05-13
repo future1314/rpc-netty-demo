@@ -2,8 +2,10 @@ package cn.thinkinjava.netty;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import java.util.concurrent.Callable;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.concurrent.Callable;
+//@Slf4j
 public class ClientHandler extends ChannelInboundHandlerAdapter implements Callable {
 
   private ChannelHandlerContext context;
@@ -27,7 +29,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter implements Calla
   @Override
   public synchronized void channelRead(ChannelHandlerContext ctx, Object msg) {
     result = msg.toString();
-    notify();
+    notify();///
   }
 
   /**
@@ -36,11 +38,12 @@ public class ClientHandler extends ChannelInboundHandlerAdapter implements Calla
   @Override
   public synchronized Object call() throws InterruptedException {
     context.writeAndFlush(para);
-    wait();
+    wait();///
     return result;
   }
 
   void setPara(String para) {
+    System.out.println(para+"----");
     this.para = para;
   }
 }

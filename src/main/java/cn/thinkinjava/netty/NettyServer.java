@@ -37,7 +37,7 @@ public class NettyServer {
             }
           });
 
-      bootstrap.bind(hostName, port).sync();
+      bootstrap.bind(hostName, port).sync();//
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
